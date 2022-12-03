@@ -9,7 +9,7 @@
     "build_python": ".\\env\\Scripts\\pip install -r .\\screenshare\\requirements.txt",
     "init_node": "yarn install",
     "build": "npm run init_python && npm run build_python && npm run init_node",
-    "start_node": "node index.js",
+    "start_node": "nodemon index.js",
     "start_python": ".\\env\\Scripts\\python .\\screenshare\\screenshare.py",
     "start_openrpa": "openrpa",
     "start": "concurrently \"npm run start_node\" \"npm run start_python\" \"npm run start_openrpa\""
@@ -21,6 +21,7 @@
     "body-parser": "^1.20.1",
     "child_process": "^1.0.2",
     "concurrently": "^7.6.0",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
   }
 }
