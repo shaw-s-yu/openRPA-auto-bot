@@ -20,13 +20,13 @@ app.get('/', (_req, res)=>{
 
 app.post('/check_auth', async (req, res)=>{
     const {username, password} = req.body;
-    setData({Item:[{username, password}]})
+    setData([{username, password}])
     exec(`openrpa -workflowid ${config.checkAuthFlowID}`, { 'shell': 'powershell.exe' })
     // console.log(error)
     // if(error!=null){
     //     throw new Error(error)
     // }
-    // await delay(10000);
+    await delay(10000);
     res.send({
         status: 200,
         message: 'saved'

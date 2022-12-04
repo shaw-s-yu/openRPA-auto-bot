@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs";
 
 const __dirname = path.resolve(path.dirname(""));
-const dataPath = path.join(__dirname, "/data/data.json");
+const dataPath = path.join(__dirname, "/data/login_credential.json");
 
 export const getData = () => JSON.parse(fs.readFileSync(dataPath, "utf8"));
 
