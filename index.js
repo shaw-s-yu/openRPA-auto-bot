@@ -6,6 +6,7 @@ import { setData } from "./utils/dataManager.js";
 import {exec} from 'child_process'
 import { delay } from "./utils/config.js";
 import config from './utils/config.js'
+import fs from 'fs'
 
 const __dirname = path.resolve(path.dirname(""));
 
@@ -21,15 +22,15 @@ app.get('/', (_req, res)=>{
 app.post('/check_auth', async (req, res)=>{
     const {username, password} = req.body;
     setData([{username, password}])
-    exec(`openrpa -workflowid ${config.checkAuthFlowID}`, { 'shell': 'powershell.exe' })
-    // console.log(error)
-    // if(error!=null){
-    //     throw new Error(error)
-    // }
+    const {error} = exec(`openrpa -workflowid ${config.checkAuthFlowID}`, { 'shell': 'powershell.exe' })
+    if(error!=null){
+        throw new Error(error)
+    }
     await delay(10000);
+    const isLoginSuccess = fs.readFileSync(path.join(__dirname, "/data/auth_result.txt"), "utf8") == 'success';
     res.send({
         status: 200,
-        message: 'saved'
+        message: `login success:${isLoginSuccess}`
     })
 })
 
