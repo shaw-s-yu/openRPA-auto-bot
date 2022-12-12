@@ -1,0 +1,1 @@
+powershell.exe -noprofile -NoExit -command "&{start-process powershell -ArgumentList '-NoExit -noprofile -file %~dp0psfile.ps1' -verb RunAs}"
